@@ -22,6 +22,7 @@ class Upfront_To_CodePen {
 	function __construct() {
 		$this->load_menu_page();
 		$this->load_upfront_theme_settings();
+		$this->load_settings_page_link();
 		$this->load_styles_and_scripts();
 	}
 
@@ -34,38 +35,12 @@ class Upfront_To_CodePen {
 		$this->settings = $this->strip_slashes( $theme_settings );
 	}
 
-	function strip_slashes( $input ) {
-		if ( is_array( $input ) ) {
-			$input = array_map( array( $this, 'strip_slashes' ), $input );
-		} elseif ( is_object( $input ) ) {
-			$vars = get_object_vars( $input );
-
-			foreach ( $vars as $k => $v ) {
-				$input->{$k} = $this->strip_slashes( $v );
-			}
-		} else {
-			$input = stripslashes( $input );
-		}
-
-		return $input;
+	function load_settings_page_link() {
+		add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( $this, 'add_action_links' ) );
 	}
 
 	function load_styles_and_scripts() {
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles_and_scripts' ) );
-	}
-
-	function enqueue_styles_and_scripts() {
-		$theme = wp_get_theme();
-
-		wp_enqueue_script( 'uf2cp-script', plugins_url( '/js/main.js', __FILE__ ), array( 'jquery' ), '1.0', true );
-		wp_localize_script( 'uf2cp-script', 'uf2cp_object',
-			array(
-				'theme_name'     => $theme->get( 'Name' ),
-				'theme_version'  => $theme->get( 'Version' ),
-				'theme_url'      => get_stylesheet_directory_uri(),
-				'theme_settings' => $this->settings,
-			)
-		);
 	}
 
 	function register_menu_page() {
@@ -96,6 +71,44 @@ class Upfront_To_CodePen {
 			</form>
 		</div>
 		<?php
+	}
+
+	function add_action_links( $links ) {
+		$plugin_links = array(
+			'<a href="' . admin_url( 'admin.php?page=upfront_to_codepen' ) . '">Settings</a>',
+		);
+
+		return array_merge( $links, $plugin_links );
+	}
+
+	function enqueue_styles_and_scripts() {
+		$theme = wp_get_theme();
+
+		wp_enqueue_script( 'uf2cp-script', plugins_url( '/js/main.js', __FILE__ ), array( 'jquery' ), '1.0', true );
+		wp_localize_script( 'uf2cp-script', 'uf2cp_object',
+			array(
+				'theme_name'     => $theme->get( 'Name' ),
+				'theme_version'  => $theme->get( 'Version' ),
+				'theme_url'      => get_stylesheet_directory_uri(),
+				'theme_settings' => $this->settings,
+			)
+		);
+	}
+
+	function strip_slashes( $input ) {
+		if ( is_array( $input ) ) {
+			$input = array_map( array( $this, 'strip_slashes' ), $input );
+		} elseif ( is_object( $input ) ) {
+			$vars = get_object_vars( $input );
+
+			foreach ( $vars as $k => $v ) {
+				$input->{$k} = $this->strip_slashes( $v );
+			}
+		} else {
+			$input = stripslashes( $input );
+		}
+
+		return $input;
 	}
 
 }

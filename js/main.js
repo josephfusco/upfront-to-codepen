@@ -56,16 +56,31 @@
 		var scss = '';
 
 		scss += el+' {\n';
-		scss += '\tcolor: '+clean_ufc(typography[el]["color"])+';\n';
-		scss += '\tfont-family: "'+typography[el]["font_face"]+'", '+typography[el]["font_family"]+';\n';
-		if(typography[el]["line_height"] != false){
+
+		if(typography[el]["color"]){
+			scss += '\tcolor: '+clean_ufc(typography[el]["color"])+';\n';
+		}
+
+		if(typography[el]["font_face"]){
+			scss += '\tfont-family: "'+typography[el]["font_face"]+'", '+typography[el]["font_family"]+';\n';
+		}
+
+		if((typography[el]["line_height"] != false) && (typography[el]["line_height"])){
 			scss += '\tline-height: '+typography[el]["line_height"]+'em;\n';
 		}
-		if(typography[el]["size"] != false) {
+
+		if((typography[el]["size"] != false) && (typography[el]["size"])) {
 			scss += '\tfont-size: '+typography[el]["size"]+'px;\n';
 		}
-		scss += '\tfont-style: '+typography[el]["style"]+';\n';
-		scss += '\tfont-weight: '+typography[el]["weight"]+';\n';
+
+		if(typography[el]["style"]){
+			scss += '\tfont-style: '+typography[el]["style"]+';\n';
+		}
+
+		if(typography[el]["weight"]){
+			scss += '\tfont-weight: '+typography[el]["weight"]+';\n';
+		}
+
 		scss += '}\n\n';
 
 		return scss;
