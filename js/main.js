@@ -3,8 +3,14 @@
 	var settings         = uf2cp_object.theme_settings;
 	var theme_colors_obj = JSON.parse(settings.theme_colors);
 	var theme_colors     = theme_colors_obj.colors;
-	var theme_fonts      = JSON.parse(settings.theme_fonts);
 	var typography       = JSON.parse(settings.typography);
+
+	// Check if non default fonts have been set
+	if(settings.theme_fonts){
+		var theme_fonts = JSON.parse(settings.theme_fonts);
+	} else {
+		var theme_fonts = '';
+	}
 
 	$('#codepen_submit').click(function(){
 
@@ -229,12 +235,15 @@
 	function clean_ufc(val) {
 		var before = '';
 
-		if (val.charAt(0) === '#') {
-			before = '$';
-		}
+		// Check if ufc color was set - if not, use the default Upfront value (#000000)
+		if (val.substring(0, 4) == "#ufc") {
+			if (val.charAt(0) === '#') {
+				before = '$';
+			}
 
-		while(val.charAt(0) === '#'){
-			val = val.substr(1);
+			while(val.charAt(0) === '#'){
+				val = val.substr(1);
+			}
 		}
 
 		return before + val;
