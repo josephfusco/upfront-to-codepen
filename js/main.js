@@ -14,17 +14,23 @@
 
 	$('#codepen_submit').click(function(){
 
-		var codepen_html = get_html();
-		var codepen_scss = get_scss();
-		var codepen_js   = '/* https://github.com/josephfusco/upfront-to-codepen */';
-		var codepen_obj  = '';
+		var codepen_html  = get_html();
+		var codepen_scss  = get_scss();
+		var codepen_js    = '/**\n * https://github.com/josephfusco/upfront-to-codepen\n */';
+		var codepen_obj   = '';
 
-		var codepen_head = get_google_fonts_used();
-		var codepen_css  = get_theme_color_sass_variables();
+		var codepen_head  = get_google_fonts_used();
+		var codepen_css   = get_theme_color_sass_variables();
+		var theme_version = '';
+
+		// Check if theme has version
+		if(uf2cp_object.theme_version) {
+			theme_version = ' v'+uf2cp_object.theme_version;
+		}
 
 		// Send data to codepen form
 		codepen_obj = {
-			"title": uf2cp_object.theme_name + ' v' + uf2cp_object.theme_version,
+			"title": uf2cp_object.theme_name + theme_version,
 			"description": "",
 			"head": codepen_head,
 			"html": codepen_html,
@@ -115,9 +121,11 @@
 	function get_theme_color_sass_variables() {
 		var scss = '';
 
-		// Construct sass variables
-		for(var i = 0; i < theme_colors.length; i++) {
-			scss += '$ufc'+i+': '+theme_colors[i].color+';\n';
+		if(theme_colors){
+			// Construct sass variables
+			for(var i = 0; i < theme_colors.length; i++) {
+				scss += '$ufc'+i+': '+theme_colors[i].color+';\n';
+			}
 		}
 
 		scss += '\n';
@@ -159,10 +167,12 @@
 		scss += '\tmargin-left: 15px;\n';
 		scss += '}\n\n';
 
-		for(var i = 0; i < theme_colors.length; i++) {
-			scss += '.theme-colors li.ufc'+i+' span {\n';
-			scss += '\tbackground-color: $ufc'+i+';\n';
-			scss += '}\n\n';
+		if(theme_colors){
+			for(var i = 0; i < theme_colors.length; i++) {
+				scss += '.theme-colors li.ufc'+i+' span {\n';
+				scss += '\tbackground-color: $ufc'+i+';\n';
+				scss += '}\n\n';
+			}
 		}
 
 		scss += '.theme-colors p {\n';
@@ -189,8 +199,11 @@
 
 		// Theme colors
 		html += '\t<ul class="theme-colors">\n';
-		for(var i = 0; i < theme_colors.length; i++) {
-			html += '\t\t<li class="ufc'+i+'"><span></span><p>#ufc'+i+'</p><p>'+theme_colors[i].color+'</p></li>\n';
+
+		if(theme_colors){
+			for(var i = 0; i < theme_colors.length; i++) {
+				html += '\t\t<li class="ufc'+i+'"><span></span><p>#ufc'+i+'</p><p>'+theme_colors[i].color+'</p></li>\n';
+			}
 		}
 		html += '\t</ul>\n';
 
