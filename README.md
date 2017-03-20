@@ -1,3 +1,5 @@
+![logo](https://cloud.githubusercontent.com/assets/6676674/24087495/2dbc6bb4-0cf6-11e7-93c2-f6171df00c51.png)
+
 # Upfront To Codepen
 
 WordPress plugin that creates a new pen containing a style guide for theme color & typography settings.
