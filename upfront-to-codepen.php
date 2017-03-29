@@ -60,10 +60,6 @@ class Upfront_To_CodePen {
 			<h1>Upfront To CodePen</h1>
 			<form id="codepen_form" action="https://codepen.io/pen/define" method="POST" target="_blank">
 				<p>Create a new pen containing a style guide of the theme colors &amp; typography settings. All Google font variants will be added within the <strong>"Stuff for &lt;head&gt;"</strong> section in the pen settings.</p>
-				<!-- <p>
-					<input type="checkbox" id="codepen_some_option" value="">
-					<label for="codepen_some_option">Some Option</label>
-				</p> -->
 				<p class="submit">
 					<input type="hidden" id="codepen_form_data" name="data" value="">
 					<input type="submit" id="codepen_submit" class="button button-primary" value="Create New Pen">
