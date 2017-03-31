@@ -1,14 +1,15 @@
 <?php
 /**
- * Plugin Name:    Upfront To CodePen
- * Plugin URI:     https://github.com/josephfusco/upfront-to-codepen/
- * Description:    Create a new pen containing a style guide for Upfront theme's colors & typography settings.
- * Version:        1.0
- * Author:         Joseph Fusco
- * Author URI:     https://josephfus.co/
- * License:        GPLv2 or later
- * License URI:    http://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:    upfront-to-codepen
+ * Plugin Name:       Upfront To CodePen
+ * Plugin URI:        https://github.com/josephfusco/upfront-to-codepen/
+ * Description:       Create a new pen containing a style guide for Upfront theme's colors & typography settings.
+ * Version:           1.1
+ * Author:            Joseph Fusco
+ * Author URI:        https://josephfus.co/
+ * License:           GPLv2 or later
+ * License URI:       http://www.gnu.org/licenses/gpl-2.0.html
+ * Text Domain:       upfront-to-codepen
+ * GitHub Plugin URI: josephfusco/upfront-to-codepen
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
