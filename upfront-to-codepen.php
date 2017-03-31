@@ -59,7 +59,8 @@ class Upfront_To_CodePen {
 		<div class="wrap card">
 			<h1>Upfront To CodePen</h1>
 			<form id="codepen_form" action="https://codepen.io/pen/define" method="POST" target="_blank">
-				<p>Create a new pen containing a style guide of the theme colors &amp; typography settings. All Google font variants will be added within the <strong>"Stuff for &lt;head&gt;"</strong> section in the pen settings.</p>
+				<p>Create a new pen containing a style guide for WPMU DEV's <a href="https://premium.wpmudev.org/projects/category/themes/" target="_blank">Upfront</a> theme.</p>
+				<p>This extracts all of the theme colors &amp; typography settings. All Google font variants will be added within the <strong>"Stuff for &lt;head&gt;"</strong> section in the pen settings.</p>
 				<p class="submit">
 					<input type="hidden" id="codepen_form_data" name="data" value="">
 					<input type="submit" id="codepen_submit" class="button button-primary" value="Create New Pen">
