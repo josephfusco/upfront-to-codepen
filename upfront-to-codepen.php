@@ -3,7 +3,7 @@
  * Plugin Name:       Upfront To CodePen
  * Plugin URI:        https://github.com/josephfusco/upfront-to-codepen/
  * Description:       Create a new pen containing a style guide for Upfront theme's colors & typography settings.
- * Version:           1.1
+ * Version:           1.1.1
  * Author:            Joseph Fusco
  * Author URI:        https://josephfus.co/
  * License:           GPLv2 or later
